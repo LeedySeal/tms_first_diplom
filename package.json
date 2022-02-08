@@ -1,0 +1,24 @@
+{
+  "name": "tms_first_diplom",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "parcel src/index.html",
+    "build": "parcel build",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LeedySeal/tms_first_diplom.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/LeedySeal/tms_first_diplom/issues"
+  },
+  "homepage": "https://github.com/LeedySeal/tms_first_diplom#readme",
+  "devDependencies": {
+    "parcel": "^2.2.1"
+  }
+}
