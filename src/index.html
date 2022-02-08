@@ -4,10 +4,25 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./css/style.css" />
     <title>Document</title>
   </head>
   <body>
-    <h1>TEST</h1>
-    <script src="test.js" type="module"></script>
+    <div class="header">
+      <div class="container header__container">
+        <button class="header__main__button">Pinterest</button>
+        <input type="text" class="header__find" placeholder="Поиск" />
+        <div class="header__select">
+          <select>
+            <option value="hide">Доски</option>
+            <option>Доска 1</option>
+            <option>Доска 2</option>
+            <option>Доска 3</option>
+          </select>
+          <!-- <div class="select__arrow"></div> -->
+        </div>
+      </div>
+    </div>
+    <script src="app.js" type="module"></script>
   </body>
 </html>
