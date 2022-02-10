@@ -13,7 +13,7 @@
 $blackColor: #000000;
 $whiteColr: #ffffff;
 $mainColor: #d4b2e4;
-
+$mainColorActive: #c084dc;
 .container {
   margin: 0 auto;
   width: 100%;
@@ -22,6 +22,12 @@ $mainColor: #d4b2e4;
 }
 
 .header {
+  position: fixed;
+  z-index: 5;
+  background-color: $whiteColr;
+  width: 100%;
+  border-bottom: 1px solid $mainColor;
+
   &__container {
     display: flex;
     padding-top: 20px;
@@ -46,7 +52,7 @@ $mainColor: #d4b2e4;
     width: 100%;
     margin-right: 15px;
     border: none;
-    background-color: $mainColor;
+    background-color: #ddcfe4;
     border-radius: 10px;
     text-align: center;
     color: $blackColor;
@@ -76,4 +82,136 @@ $mainColor: #d4b2e4;
       background-color: $mainColor;
     }
   }
+}
+
+.pinsWrapper {
+  padding-top: 100px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-gap: 5px;
+}
+
+.pinContainer {
+  max-width: 236px;
+  width: 100%;
+  height: 600px;
+}
+
+.imgContainer {
+  height: 472px;
+  margin-bottom: 10px;
+  position: relative;
+
+  &:hover .img__shadow {
+    display: block;
+  }
+}
+
+.img__shadow {
+  max-width: 236px;
+  width: 100%;
+  height: 472px;
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  border-radius: 16px;
+  border: 1px solid transparent;
+  background: rgba(0, 0, 0, 0.5);
+  display: none;
+  transition: all 0.5s;
+}
+
+.img__button {
+  position: absolute;
+  z-index: 2;
+  opacity: 1;
+}
+
+.img__save {
+  top: 15px;
+  right: 15px;
+  max-width: 100px;
+  width: 100%;
+  cursor: pointer;
+  font-size: 15px;
+  line-height: 30px;
+  text-transform: capitalize;
+  border: none;
+  background-color: $mainColor;
+  border-radius: 16px;
+  color: $whiteColr;
+  transition: background-color 0.5s;
+
+  &:hover {
+    background-color: $mainColorActive;
+  }
+}
+
+.img__hide {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  cursor: pointer;
+  max-width: 180px;
+  width: 100%;
+  font-size: 14px;
+  line-height: 14px;
+  border: none;
+  background-color: transparent;
+  color: $whiteColr;
+  transition: text-shadow 0.5s;
+
+  &:hover {
+    text-shadow: 1px 1px 2px $mainColor;
+  }
+}
+
+.img__complain {
+  border: none;
+  cursor: pointer;
+  bottom: 15px;
+  left: 10px;
+  max-width: 120px;
+  width: 100%;
+  cursor: pointer;
+  font-size: 13px;
+  line-height: 18px;
+  text-transform: capitalize;
+  border: none;
+  background-color: #ddcfe4;
+  border-radius: 16px;
+  color: rgb(179, 176, 176);
+  transition: color 0.5s;
+
+  &:hover {
+    color: $whiteColr;
+  }
+}
+
+.pinImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 16px;
+}
+
+.avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin-right: 20px;
+  object-fit: cover;
+}
+
+.description__wraper {
+  display: flex;
+  align-self: center;
+}
+
+.description {
+  font-weight: bold;
+  font-size: 20px;
+  line-height: 30px;
+  text-transform: capitalize;
 }
