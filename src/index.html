@@ -26,6 +26,125 @@
     <div class="main container">
       <div class="pinsWrapper"></div>
     </div>
+
+    <!-- модально окно для жалоб -->
+    <div class="modal">
+      <div class="modal__window">
+        <h3 class="modal__title">Жалоба на пин</h3>
+        <div class="modal__choice">
+          <!-- complain 1 -->
+          <input type="radio" id="spam" class="modal__check" />
+          <label class="modal__container spam" for="spam">
+            <div class="modal__info">
+              <h4 class="modal__complain">Спам</h4>
+              <p class="modal__complain-details">
+                Вводящие в заблуждение или повторяющиеся публикации
+              </p>
+            </div>
+          </label>
+          <!-- complain 2 -->
+          <input type="radio" class="modal__check" id="nude" />
+          <label class="modal__container nude" for="nude">
+            <div class="modal__info">
+              <h4 class="modal__complain">
+                Изображения обнаженного тела или порнография
+              </h4>
+              <p class="modal__complain-details">
+                Содержимое сексуального характера
+              </p>
+            </div>
+          </label>
+          <!-- complain 3 -->
+          <input type="radio" class="modal__check" id="self-harm" />
+          <label class="modal__container self-harm" for="self-harm">
+            <div class="modal__info">
+              <h4 class="modal__complain">Членовредительство</h4>
+              <p class="modal__complain-details">
+                Расстройства пищевого поведения, нанесение травм себе, суицид
+              </p>
+            </div>
+          </label>
+          <!-- complain 4 -->
+          <input type="radio" class="modal__check" id="lie" />
+          <label class="modal__container lie" for="lie">
+            <div class="modal__info">
+              <h4 class="modal__complain">Ложная информация</h4>
+              <p class="modal__complain-details">
+                Ложная информация о здоровье или заговоры
+              </p>
+            </div>
+          </label>
+          <!-- complain 5 -->
+          <input type="radio" class="modal__check" id="agress" />
+          <label class="modal__container agress" for="agress">
+            <div class="modal__info">
+              <h4 class="modal__complain">Агрессивные действия</h4>
+              <p class="modal__complain-details">
+                Предрассудки, стереотипы, идея превосходства белой расы,
+                оскорбления
+              </p>
+            </div>
+          </label>
+          <!-- complain 6 -->
+          <input type="radio" class="modal__check" id="danger" />
+          <label class="modal__container danger" for="danger">
+            <div class="modal__info">
+              <h4 class="modal__complain">Опасные товары</h4>
+              <p class="modal__complain-details">
+                Наркотики, оружие, регулируемые товары
+              </p>
+            </div>
+          </label>
+          <!-- complain 7 -->
+          <input type="radio" class="modal__check" id="abuse" />
+          <label class="modal__container danger" for="abuuse">
+            <div class="modal__info">
+              <h4 class="modal__complain">
+                Преследование или нарушение конфиденциальности
+              </h4>
+              <p class="modal__complain-details">
+                Оскорбления, угрозы, публикация персональных данных
+              </p>
+            </div>
+          </label>
+          <!-- complain 8 -->
+          <input type="radio" class="modal__check" id="violence" />
+          <label class="modal__container danger" for="violence">
+            <div class="modal__info">
+              <h4 class="modal__complain">Сцены насилия</h4>
+              <p class="modal__complain-details">
+                Графическое изображение или пропаганда насилия
+              </p>
+            </div>
+          </label>
+          <!-- complain 9 -->
+          <input type="radio" class="modal__check" id="intellectual" />
+          <label class="modal__container danger" for="intellectual">
+            <div class="modal__info">
+              <h4 class="modal__complain">
+                Это моя интеллектуальная собственность
+              </h4>
+              <p class="modal__complain-details">
+                Нарушение авторских прав или прав на товарный знак
+              </p>
+            </div>
+          </label>
+        </div>
+        <div class="modal__buttons">
+          <button class="modal__delay modal__button">Отмена</button>
+          <button class="modal__send modal__button">Отправить</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- модалка для сохранения -->
+    <div class="saveModal">
+      <div class="saveModal__window">
+        <h3 class="saveModal__title">Сохранить пин</h3>
+        <div class="saveModal__boards"></div>
+      </div>
+    </div>
+
     <script src="app.js" type="module"></script>
   </body>
 </html>
