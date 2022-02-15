@@ -26,6 +26,86 @@ export let pins = [];
 //     description: "fowjoakwp[fp[",
 //     id: 3,
 //   },
+//   {
+//     image:
+//       "https://a.storyblok.com/f/89243/1050x700/b9aaad5c52/photo-1591035897819-f4bdf739f446.webp",
+//     avatar:
+//       "https://www.shutterstock.com/blog/wp-content/uploads/sites/5/2019/07/Man-Silhouette.jpg",
+//     description: "fowjoakwp[fp[",
+//     id: 4,
+//   },
+//   {
+//     image:
+//       "https://a.storyblok.com/f/89243/1050x700/b9aaad5c52/photo-1591035897819-f4bdf739f446.webp",
+//     avatar:
+//       "https://www.shutterstock.com/blog/wp-content/uploads/sites/5/2019/07/Man-Silhouette.jpg",
+//     description: "fowjoakwp[fp[",
+//     id: 5,
+//   },
+//   {
+//     image:
+//       "https://a.storyblok.com/f/89243/1050x700/b9aaad5c52/photo-1591035897819-f4bdf739f446.webp",
+//     avatar:
+//       "https://www.shutterstock.com/blog/wp-content/uploads/sites/5/2019/07/Man-Silhouette.jpg",
+//     description: "fowjoakwp[fp[",
+//     id: 6,
+//   },
+//   {
+//     image:
+//       "https://a.storyblok.com/f/89243/1050x700/b9aaad5c52/photo-1591035897819-f4bdf739f446.webp",
+//     avatar:
+//       "https://www.shutterstock.com/blog/wp-content/uploads/sites/5/2019/07/Man-Silhouette.jpg",
+//     description: "fowjoakwp[fp[",
+//     id: 7,
+//   },
+//   {
+//     image:
+//       "https://a.storyblok.com/f/89243/1050x700/b9aaad5c52/photo-1591035897819-f4bdf739f446.webp",
+//     avatar:
+//       "https://www.shutterstock.com/blog/wp-content/uploads/sites/5/2019/07/Man-Silhouette.jpg",
+//     description: "fowjoakwp[fp[",
+//     id: 8,
+//   },
+//   {
+//     image:
+//       "https://a.storyblok.com/f/89243/1050x700/b9aaad5c52/photo-1591035897819-f4bdf739f446.webp",
+//     avatar:
+//       "https://www.shutterstock.com/blog/wp-content/uploads/sites/5/2019/07/Man-Silhouette.jpg",
+//     description: "fowjoakwp[fp[",
+//     id: 9,
+//   },
+//   {
+//     image:
+//       "https://a.storyblok.com/f/89243/1050x700/b9aaad5c52/photo-1591035897819-f4bdf739f446.webp",
+//     avatar:
+//       "https://www.shutterstock.com/blog/wp-content/uploads/sites/5/2019/07/Man-Silhouette.jpg",
+//     description: "fowjoakwp[fp[",
+//     id: 10,
+//   },
+//   {
+//     image:
+//       "https://a.storyblok.com/f/89243/1050x700/b9aaad5c52/photo-1591035897819-f4bdf739f446.webp",
+//     avatar:
+//       "https://www.shutterstock.com/blog/wp-content/uploads/sites/5/2019/07/Man-Silhouette.jpg",
+//     description: "fowjoakwp[fp[",
+//     id: 11,
+//   },
+//   {
+//     image:
+//       "https://a.storyblok.com/f/89243/1050x700/b9aaad5c52/photo-1591035897819-f4bdf739f446.webp",
+//     avatar:
+//       "https://www.shutterstock.com/blog/wp-content/uploads/sites/5/2019/07/Man-Silhouette.jpg",
+//     description: "fowjoakwp[fp[",
+//     id: 12,
+//   },
+//   {
+//     image:
+//       "https://a.storyblok.com/f/89243/1050x700/b9aaad5c52/photo-1591035897819-f4bdf739f446.webp",
+//     avatar:
+//       "https://www.shutterstock.com/blog/wp-content/uploads/sites/5/2019/07/Man-Silhouette.jpg",
+//     description: "fowjoakwp[fp[",
+//     id: 13,
+//   },
 // ];
 export function getPins() {
   fetch("https://62027eb74d21c200170b9753.mockapi.io/pin")
@@ -39,9 +119,7 @@ export function getPins() {
       }
       // arr.forEach((item) => {
       //   createPin(item);
-      // });
-      // }
-    );
+    ); // });
 }
 
 export function createPin(pin) {
@@ -106,8 +184,11 @@ export function createPin(pin) {
       break;
   }
   hideElement(imgButtonHide, pin.id);
-  openModal(imgButtonComplain);
-  closeModal();
+  openModalComplain(imgButtonComplain);
+  closeModalComplain();
+  sendModalComplain();
+  openModalSave(imgButtonSave);
+  closeModalSave();
 }
 
 function hideElement(hideButton, pinId) {
@@ -116,19 +197,51 @@ function hideElement(hideButton, pinId) {
   });
 }
 
-function openModal(imgButtonComplain) {
+function openModalComplain(imgButtonComplain) {
   const modal = document.querySelector(".modal");
   imgButtonComplain.addEventListener("click", () => {
     modal.classList.remove("modal-disable");
     modal.classList.add("modal-active");
+    document.body.classList.add("body__notScroll");
   });
 }
 
-function closeModal() {
-  const closeButton = document.querySelector(".modal__delay");
+function closeModalComplain() {
+  const closeComplainButton = document.querySelector(".modal__delay");
   const modal = document.querySelector(".modal");
-  closeButton.addEventListener("click", () => {
+  closeComplainButton.addEventListener("click", () => {
     modal.classList.remove("modal-active");
     modal.classList.add("modal-disable");
+    document.body.classList.remove("body__notScroll");
   });
 }
+
+function sendModalComplain() {
+  const sendComplainButton = document.querySelector(".modal__send");
+  const modal = document.querySelector(".modal");
+  sendComplainButton.addEventListener("click", () => {
+    modal.classList.remove("modal-active");
+    modal.classList.add("modal-disable");
+    document.body.classList.remove("body__notScroll");
+  });
+}
+
+function openModalSave(imgButtonSave) {
+  const saveModal = document.querySelector(".saveModal");
+  imgButtonSave.addEventListener("click", () => {
+    saveModal.classList.remove("modal-disable");
+    saveModal.classList.add("modal-active");
+    document.body.classList.add("body__notScroll");
+  });
+}
+
+function closeModalSave() {
+  const saveModalButton = document.querySelector(".saveModal__button");
+  const saveModal = document.querySelector(".saveModal");
+  saveModalButton.addEventListener("click", () => {
+    saveModal.classList.remove("modal-active");
+    saveModal.classList.add("modal-disable");
+    document.body.classList.remove("body__notScroll");
+  });
+}
+
