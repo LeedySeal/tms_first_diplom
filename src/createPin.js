@@ -112,8 +112,10 @@ export function getPins() {
     .then((response) => response.json())
     .then(
       (data) => {
+        findPins(data);
         data.forEach((item) => {
           createPin(item);
+
           // console.log(item);
         });
       }
@@ -245,3 +247,17 @@ function closeModalSave() {
   });
 }
 
+function findPins(pin) {
+  const input = document.querySelector(".header__find");
+  const pinsWrapper = document.querySelector(".pinsWrapper");
+  input.addEventListener("input", (event) => {
+    let newData = [];
+    let value = event.target.value;
+    newData = pin.filter((el) => el.description.includes(value));
+    console.log(newData);
+    pinsWrapper.innerHTML = "";
+    newData.forEach((el) => {
+      createPin(el);
+    });
+  });
+}
