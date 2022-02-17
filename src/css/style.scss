@@ -443,9 +443,11 @@ $mainColorActive: #c084dc;
   &__boards {
     height: 300px;
     overflow: auto;
+    padding-left: 16px;
+    padding-right: 16px;
   }
 
-  &__button {
+  &__createButton {
     cursor: pointer;
     width: 100%;
     border: none;
@@ -470,5 +472,79 @@ $mainColorActive: #c084dc;
 
   &.modal-disable {
     display: none;
+  }
+
+  &__CreateTitle {
+    margin-bottom: 50px;
+  }
+  &__inputContainer {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+  &__label {
+    font-size: 15px;
+    margin-bottom: 20px;
+    text-align: center;
+    margin-left: 10px;
+    cursor: pointer;
+    margin-top: 50px;
+  }
+
+  &__input {
+    display: block;
+    margin-top: 10px;
+    border: none;
+    border: 3px solid rgb(202, 202, 202);
+    border-radius: 16px;
+    max-width: 268px;
+    width: 100%;
+    height: 35px;
+    margin-bottom: 50px;
+
+    &[placeholder] {
+      padding-left: 10px;
+      padding-right: 10px;
+    }
+  }
+
+  &__buttonContainer {
+    display: flex;
+    padding: 0 16px;
+    justify-content: space-between;
+  }
+
+  &__buttons {
+    border: none;
+    border-radius: 16px;
+    max-width: 100px;
+    width: 100%;
+    font-size: 16px;
+    line-height: 35px;
+    cursor: pointer;
+    margin-bottom: 10px;
+  }
+
+  &__delayButton {
+    background-color: rgb(228, 222, 222);
+    transition: all 0.5s;
+    &:hover {
+      background-color: rgb(248, 240, 240);
+    }
+
+    &:active {
+      background-color: rgb(228, 222, 222);
+    }
+  }
+
+  &__readyButton {
+    background-color: $mainColorActive;
+    transition: all 0.5s;
+    &:hover {
+      background-color: $mainColor;
+    }
+
+    &:active {
+      background-color: $mainColorActive;
+    }
   }
 }

@@ -190,7 +190,7 @@ export function createPin(pin) {
   closeModalComplain();
   sendModalComplain();
   openModalSave(imgButtonSave);
-  closeModalSave();
+  // closeModalSave();
 }
 
 function hideElement(hideButton, pinId) {
@@ -234,18 +234,20 @@ function openModalSave(imgButtonSave) {
     saveModal.classList.remove("modal-disable");
     saveModal.classList.add("modal-active");
     document.body.classList.add("body__notScroll");
+
+    addContentToModalSave();
   });
 }
 
-function closeModalSave() {
-  const saveModalButton = document.querySelector(".saveModal__button");
-  const saveModal = document.querySelector(".saveModal");
-  saveModalButton.addEventListener("click", () => {
-    saveModal.classList.remove("modal-active");
-    saveModal.classList.add("modal-disable");
-    document.body.classList.remove("body__notScroll");
-  });
-}
+// function closeModalSave() {
+//   const saveModalButton = document.querySelector(".saveModal__button");
+//   const saveModal = document.querySelector(".saveModal");
+//   saveModalButton.addEventListener("click", () => {
+//     saveModal.classList.remove("modal-active");
+//     saveModal.classList.add("modal-disable");
+//     document.body.classList.remove("body__notScroll");
+//   });
+// }
 
 function findPins(pin) {
   const input = document.querySelector(".header__find");
@@ -259,5 +261,66 @@ function findPins(pin) {
     newData.forEach((el) => {
       createPin(el);
     });
+  });
+}
+
+function addContentToModalSave() {
+  const saveModalWindow = document.querySelector(".saveModal__window");
+
+  const saveModalTitle = document.createElement("h3");
+  saveModalTitle.classList.add("saveModal__title");
+  saveModalTitle.innerText = "Сохранить пин";
+  const saveModalBoards = document.createElement("div");
+  saveModalBoards.classList.add("saveModal__boards");
+  const createDeskButton = document.createElement("button");
+  createDeskButton.classList.add("saveModal__createButton");
+  createDeskButton.innerText = "Создать доску";
+
+  saveModalWindow.append(saveModalTitle);
+  saveModalWindow.append(saveModalBoards);
+  saveModalWindow.append(createDeskButton);
+
+  addContentToModalCreateDesk();
+}
+
+function addContentToModalCreateDesk() {
+  const saveModalWindow = document.querySelector(".saveModal__window");
+  const createDeskButton = document.querySelector(".saveModal__createButton");
+
+  createDeskButton.addEventListener("click", () => {
+    saveModalWindow.innerHTML = "";
+
+    const createDeskTitle = document.createElement("h3");
+    createDeskTitle.classList.add("saveModal__title", "saveModal__CreateTitle");
+    createDeskTitle.innerText = "Создать доску";
+    saveModalWindow.append(createDeskTitle);
+
+    const inputContainer = document.createElement("div");
+    inputContainer.classList.add("saveModal__inputContainer");
+    saveModalWindow.append(inputContainer);
+
+    const label = document.createElement("label");
+    label.innerText = "Название";
+    label.classList.add("saveModal__label");
+    inputContainer.append(label);
+
+    const input = document.createElement("input");
+    input.classList.add("saveModal__input");
+    input.setAttribute("placeholder", "Например, «Рецепты» или «Причёски»");
+    label.append(input);
+
+    const buttonContainer = document.createElement("div");
+    buttonContainer.classList.add("saveModal__buttonContainer");
+    saveModalWindow.append(buttonContainer);
+
+    const delayButton = document.createElement("button");
+    delayButton.classList.add("saveModal__delayButton", "saveModal__buttons");
+    delayButton.innerText = "Отмена";
+    buttonContainer.append(delayButton);
+
+    const readyButton = document.createElement("button");
+    readyButton.classList.add("saveModal__readyButton", "saveModal__buttons");
+    readyButton.innerText = "Готово";
+    buttonContainer.append(readyButton);
   });
 }
