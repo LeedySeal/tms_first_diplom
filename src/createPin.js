@@ -189,7 +189,7 @@ export function createPin(pin) {
   openModalComplain(imgButtonComplain);
   closeModalComplain();
   sendModalComplain();
-  openModalSave(imgButtonSave);
+  openModalSave(imgButtonSave, pin.id);
   // closeModalSave();
 }
 
@@ -228,27 +228,6 @@ function sendModalComplain() {
   });
 }
 
-function openModalSave(imgButtonSave) {
-  const saveModal = document.querySelector(".saveModal");
-  imgButtonSave.addEventListener("click", () => {
-    saveModal.classList.remove("modal-disable");
-    saveModal.classList.add("modal-active");
-    document.body.classList.add("body__notScroll");
-
-    addContentToModalSave();
-  });
-}
-
-// function closeModalSave() {
-//   const saveModalButton = document.querySelector(".saveModal__button");
-//   const saveModal = document.querySelector(".saveModal");
-//   saveModalButton.addEventListener("click", () => {
-//     saveModal.classList.remove("modal-active");
-//     saveModal.classList.add("modal-disable");
-//     document.body.classList.remove("body__notScroll");
-//   });
-// }
-
 function findPins(pin) {
   const input = document.querySelector(".header__find");
   const pinsWrapper = document.querySelector(".pinsWrapper");
@@ -264,14 +243,61 @@ function findPins(pin) {
   });
 }
 
-function addContentToModalSave() {
+function openModalSave(imgButtonSave, pinId) {
+  const saveModal = document.querySelector(".saveModal");
   const saveModalWindow = document.querySelector(".saveModal__window");
+  imgButtonSave.addEventListener("click", () => {
+    saveModalWindow.innerHTML = "";
+    saveModal.classList.remove("modal-disable");
+    saveModal.classList.add("modal-active");
+    document.body.classList.add("body__notScroll");
+
+    addContentToModalSave(pinId);
+  });
+}
+
+function addContentToModalSave(pinId) {
+  const saveModalWindow = document.querySelector(".saveModal__window");
+  saveModalWindow.innerHTML = "";
 
   const saveModalTitle = document.createElement("h3");
   saveModalTitle.classList.add("saveModal__title");
   saveModalTitle.innerText = "Сохранить пин";
+
   const saveModalBoards = document.createElement("div");
   saveModalBoards.classList.add("saveModal__boards");
+  if (localStorage.getItem("boards")) {
+    let boardsArr = JSON.parse(localStorage.getItem("boards"));
+
+    boardsArr.forEach((obj, index) => {
+      const deskContainer = document.createElement("div");
+      deskContainer.classList.add("saveModal__boardsContainer");
+      const deskName = document.createElement("p");
+      deskName.classList.add("saveModal__boardsTitle");
+      deskName.innerText = obj.name;
+
+      deskContainer.addEventListener("click", () => {
+        const modalSave = document.querySelector(".saveModal");
+
+        if (boardsArr[index].pins.find((item) => item == pinId)) {
+          modalSave.classList.remove("modal-active");
+          modalSave.classList.add("modal-disable");
+          document.body.classList.remove("body__notScroll");
+        } else {
+          boardsArr[index].pins.push(pinId);
+          localStorage.setItem("boards", JSON.stringify(boardsArr));
+
+          modalSave.classList.remove("modal-active");
+          modalSave.classList.add("modal-disable");
+          document.body.classList.remove("body__notScroll");
+        }
+      });
+
+      saveModalBoards.append(deskContainer);
+      deskContainer.append(deskName);
+    });
+  }
+
   const createDeskButton = document.createElement("button");
   createDeskButton.classList.add("saveModal__createButton");
   createDeskButton.innerText = "Создать доску";
@@ -280,10 +306,10 @@ function addContentToModalSave() {
   saveModalWindow.append(saveModalBoards);
   saveModalWindow.append(createDeskButton);
 
-  addContentToModalCreateDesk();
+  addContentToModalCreateDesk(pinId);
 }
 
-function addContentToModalCreateDesk() {
+function addContentToModalCreateDesk(pinId) {
   const saveModalWindow = document.querySelector(".saveModal__window");
   const createDeskButton = document.querySelector(".saveModal__createButton");
 
@@ -322,5 +348,47 @@ function addContentToModalCreateDesk() {
     readyButton.classList.add("saveModal__readyButton", "saveModal__buttons");
     readyButton.innerText = "Готово";
     buttonContainer.append(readyButton);
+
+    closeModalCreateDesk();
+    createNewDesk(pinId);
+  });
+}
+
+function closeModalCreateDesk() {
+  const delayButton = document.querySelector(".saveModal__delayButton");
+  const modalSave = document.querySelector(".saveModal");
+
+  delayButton.addEventListener("click", () => {
+    modalSave.classList.remove("modal-active");
+    modalSave.classList.add("modal-disable");
+    document.body.classList.remove("body__notScroll");
+  });
+}
+
+function createNewDesk(pinId) {
+  const readyButton = document.querySelector(".saveModal__readyButton");
+  const input = document.querySelector(".saveModal__input");
+
+  readyButton.addEventListener("click", () => {
+    if (localStorage.getItem("boards")) {
+      let boards = JSON.parse(localStorage.getItem("boards"));
+      boards.push({
+        name: input.value,
+        deskId: `${Math.random()}`,
+        pins: [pinId],
+      });
+      localStorage.setItem("boards", JSON.stringify(boards));
+    } else {
+      localStorage.setItem(
+        "boards",
+        JSON.stringify([
+          { name: input.value, deskId: `${Math.random()}`, pins: [pinId] },
+        ])
+      );
+    }
+    const modalSave = document.querySelector(".saveModal");
+    modalSave.classList.remove("modal-active");
+    modalSave.classList.add("modal-disable");
+    document.body.classList.remove("body__notScroll");
   });
 }

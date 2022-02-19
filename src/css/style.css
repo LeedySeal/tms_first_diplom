@@ -82,7 +82,8 @@
   border: none;
   border-radius: 10px;
   border-radius: 0;
-  background-color: #d4b2e4;
+  background-color: #ffffff;
+  color: #c084dc;
 }
 
 .pinsWrapper {
@@ -615,5 +616,34 @@
 
 .saveModal__readyButton:active {
   background-color: #c084dc;
+}
+
+.saveModal__boardsContainer {
+  border: 2px solid #d4b2e4;
+  margin-bottom: 10px;
+  cursor: pointer;
+  border-radius: 16px;
+  background-color: #ffffff;
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
+}
+
+.saveModal__boardsContainer:last-child {
+  margin-bottom: 10px;
+}
+
+.saveModal__boardsContainer:hover {
+  background-color: #f8f0f0;
+}
+
+.saveModal__boardsContainer:active {
+  background-color: #e4dede;
+}
+
+.saveModal__boardsTitle {
+  text-align: center;
+  text-transform: capitalize;
+  font-size: 17px;
+  line-height: 30px;
 }
 /*# sourceMappingURL=style.css.map */
