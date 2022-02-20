@@ -429,35 +429,64 @@ function createNewDesk(pinId) {
 
 function createDeskSelect() {
   const select = document.querySelector(".header__select");
-  select.innerHTML = "";
+  const selectList = document.querySelector(".header__selectList");
+  selectList.innerHTML = "";
 
-  const mainOption = document.createElement("option");
-  select.prepend(mainOption);
-  mainOption.innerText = "Доски";
+  select.addEventListener("click", () => {
+    if (selectList.classList.contains("header__selectList-active")) {
+      selectList.classList.remove("header__selectList-active");
+    } else {
+      selectList.classList.add("header__selectList-active");
+    }
+  });
 
   let boards = JSON.parse(localStorage.getItem("boards"));
   if (boards) {
     boards.forEach((obj) => {
-      const option = document.createElement("option");
-      option.classList.add("header__option");
-      select.append(option);
-      deskFilter(obj, option);
+      const li = document.createElement("li");
+      li.classList.add("header__li");
+      selectList.append(li);
+      deskFilter(obj, li, selectList);
 
-      option.innerText = obj.name;
+      li.innerText = obj.name;
     });
   }
 }
 
 createDeskSelect();
 
-function deskFilter(obj, option) {
-  option.addEventListener("selected", () => {
+function deskFilter(obj, li, selectList) {
+  const span = document.querySelector(".header__span");
+
+  li.addEventListener("click", () => {
+    if (li.innerText !== "Доски") {
+      const liDesk = document.createElement("li");
+      liDesk.innerText = "Доски";
+      liDesk.classList.add("header__li");
+      selectList.append(liDesk);
+
+      liDesk.addEventListener("click", () => {
+        span.innerText = "Доски";
+        const pinsWrapper = document.querySelector(".pinsWrapper");
+        pinsWrapper.innerHTML = "";
+        selectList.removeChild(liDesk);
+        pins.forEach((item) => {
+          createPin(item);
+        });
+      });
+    }
+
+    span.innerText = obj.name;
+
     let filteredArray = pins.filter((item) => obj.pins.includes(item.id));
+
     const pinsWrapper = document.querySelector(".pinsWrapper");
     pinsWrapper.innerHTML = "";
 
     console.log(filteredArray);
 
-    createPin(filteredArray);
+    filteredArray.forEach((el) => {
+      createPin(el);
+    });
   });
 }

@@ -31,6 +31,7 @@
   display: -ms-flexbox;
   display: flex;
   padding-top: 20px;
+  padding-bottom: 10px;
 }
 
 .header__main__button {
@@ -84,6 +85,39 @@
   border-radius: 0;
   background-color: #ffffff;
   color: #c084dc;
+}
+
+.header__select {
+  font-size: 14px;
+  line-height: 25px;
+  max-width: 100px;
+  width: 100%;
+  text-align: center;
+  cursor: pointer;
+  position: relative;
+}
+
+.header__selectList {
+  width: 100px;
+  position: absolute;
+  top: 100%;
+  display: none;
+}
+
+.header__selectList-active {
+  display: inherit;
+}
+
+.header__li {
+  list-style-type: none;
+  border-bottom: 1px solid #ffffff;
+  background-color: #c084dc;
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
+}
+
+.header__li:hover {
+  background-color: #d4b2e4;
 }
 
 .pinsWrapper {

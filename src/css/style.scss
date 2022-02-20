@@ -31,6 +31,7 @@ $mainColorActive: #c084dc;
   &__container {
     display: flex;
     padding-top: 20px;
+    padding-bottom: 10px;
   }
   &__main__button {
     max-width: 100px;
@@ -82,6 +83,40 @@ $mainColorActive: #c084dc;
       border-radius: 0;
       background-color: $whiteColr;
       color: $mainColorActive;
+    }
+  }
+
+  &__select {
+    font-size: 14px;
+    line-height: 25px;
+    max-width: 100px;
+    width: 100%;
+    text-align: center;
+    cursor: pointer;
+    position: relative;
+  }
+
+  &__selectList {
+    width: 100px;
+    position: absolute;
+    top: 100%;
+    display: none;
+  }
+  &__selectList-active {
+    display: inherit;
+  }
+
+  // &__selectList-nonActive {
+  //   display: none;
+  // }
+  &__li {
+    list-style-type: none;
+    border-bottom: 1px solid $whiteColr;
+    background-color: $mainColorActive;
+    transition: all 0.5s;
+
+    &:hover {
+      background-color: $mainColor;
     }
   }
 }
