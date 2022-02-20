@@ -113,6 +113,7 @@ export function getPins() {
     .then(
       (data) => {
         findPins(data);
+        pins = data;
         data.forEach((item) => {
           createPin(item);
 
@@ -190,7 +191,6 @@ export function createPin(pin) {
   closeModalComplain();
   sendModalComplain();
   openModalSave(imgButtonSave, pin.id);
-  // closeModalSave();
 }
 
 function hideElement(hideButton, pinId) {
@@ -260,12 +260,31 @@ function addContentToModalSave(pinId) {
   const saveModalWindow = document.querySelector(".saveModal__window");
   saveModalWindow.innerHTML = "";
 
+  const container = document.createElement("div");
+  container.classList.add("title__container");
+
   const saveModalTitle = document.createElement("h3");
   saveModalTitle.classList.add("saveModal__title");
   saveModalTitle.innerText = "Сохранить пин";
 
+  // стрелочка выхода
+
+  const lineBox = document.createElement("div");
+  lineBox.classList.add("saveModal__lineBox");
+
+  const upLine = document.createElement("div");
+  upLine.classList.add("saveModal__upLine");
+
+  const downLine = document.createElement("div");
+  downLine.classList.add("saveModal__downLine");
+
+  const createDeskButton = document.createElement("button");
+  createDeskButton.classList.add("saveModal__createButton");
+  createDeskButton.innerText = "Создать доску";
+
   const saveModalBoards = document.createElement("div");
   saveModalBoards.classList.add("saveModal__boards");
+
   if (localStorage.getItem("boards")) {
     let boardsArr = JSON.parse(localStorage.getItem("boards"));
 
@@ -298,15 +317,28 @@ function addContentToModalSave(pinId) {
     });
   }
 
-  const createDeskButton = document.createElement("button");
-  createDeskButton.classList.add("saveModal__createButton");
-  createDeskButton.innerText = "Создать доску";
+  saveModalWindow.append(container);
+  container.append(saveModalTitle);
+  container.prepend(lineBox);
+  lineBox.append(upLine);
+  lineBox.append(downLine);
 
-  saveModalWindow.append(saveModalTitle);
   saveModalWindow.append(saveModalBoards);
   saveModalWindow.append(createDeskButton);
 
   addContentToModalCreateDesk(pinId);
+  closeModalSave();
+}
+
+function closeModalSave() {
+  const lineBox = document.querySelector(".saveModal__lineBox");
+  const modalSave = document.querySelector(".saveModal");
+
+  lineBox.addEventListener("click", () => {
+    modalSave.classList.remove("modal-active");
+    modalSave.classList.add("modal-disable");
+    document.body.classList.remove("body__notScroll");
+  });
 }
 
 function addContentToModalCreateDesk(pinId) {
@@ -390,5 +422,42 @@ function createNewDesk(pinId) {
     modalSave.classList.remove("modal-active");
     modalSave.classList.add("modal-disable");
     document.body.classList.remove("body__notScroll");
+
+    createDeskSelect();
+  });
+}
+
+function createDeskSelect() {
+  const select = document.querySelector(".header__select");
+  select.innerHTML = "";
+
+  const mainOption = document.createElement("option");
+  select.prepend(mainOption);
+  mainOption.innerText = "Доски";
+
+  let boards = JSON.parse(localStorage.getItem("boards"));
+  if (boards) {
+    boards.forEach((obj) => {
+      const option = document.createElement("option");
+      option.classList.add("header__option");
+      select.append(option);
+      deskFilter(obj, option);
+
+      option.innerText = obj.name;
+    });
+  }
+}
+
+createDeskSelect();
+
+function deskFilter(obj, option) {
+  option.addEventListener("selected", () => {
+    let filteredArray = pins.filter((item) => obj.pins.includes(item.id));
+    const pinsWrapper = document.querySelector(".pinsWrapper");
+    pinsWrapper.innerHTML = "";
+
+    console.log(filteredArray);
+
+    createPin(filteredArray);
   });
 }

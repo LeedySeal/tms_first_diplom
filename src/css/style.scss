@@ -65,7 +65,7 @@ $mainColorActive: #c084dc;
     }
   }
 
-  &__select {
+  &__selectContainer {
     max-width: 100px;
     width: 100%;
     position: relative;
@@ -575,5 +575,31 @@ $mainColorActive: #c084dc;
     text-transform: capitalize;
     font-size: 17px;
     line-height: 30px;
+  }
+
+  &__lineBox {
+    position: relative;
+    cursor: pointer;
+    margin-left: 10px;
+    width: 100%;
+    max-width: 15px;
+    height: 20px;
+  }
+
+  &__upLine {
+    position: absolute;
+    height: 2px;
+    width: 15px;
+    background-color: $mainColorActive;
+    transform: rotate(-45deg);
+  }
+
+  &__downLine {
+    position: absolute;
+    height: 2px;
+    width: 15px;
+    background-color: $mainColorActive;
+    transform: rotate(45deg);
+    top: 10px;
   }
 }

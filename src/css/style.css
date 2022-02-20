@@ -66,7 +66,7 @@
   color: #000000;
 }
 
-.header__select {
+.header__selectContainer {
   max-width: 100px;
   width: 100%;
   position: relative;
@@ -74,7 +74,7 @@
   margin-bottom: 15px;
 }
 
-.header__select select {
+.header__selectContainer select {
   display: inline-block;
   cursor: pointer;
   padding: 10px 15px;
@@ -645,5 +645,33 @@
   text-transform: capitalize;
   font-size: 17px;
   line-height: 30px;
+}
+
+.saveModal__lineBox {
+  position: relative;
+  cursor: pointer;
+  margin-left: 10px;
+  width: 100%;
+  max-width: 15px;
+  height: 20px;
+}
+
+.saveModal__upLine {
+  position: absolute;
+  height: 2px;
+  width: 15px;
+  background-color: #c084dc;
+  -webkit-transform: rotate(-45deg);
+          transform: rotate(-45deg);
+}
+
+.saveModal__downLine {
+  position: absolute;
+  height: 2px;
+  width: 15px;
+  background-color: #c084dc;
+  -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
+  top: 10px;
 }
 /*# sourceMappingURL=style.css.map */
